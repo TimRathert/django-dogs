@@ -1,7 +1,7 @@
 {% extends 'base.html' %} 
 {% block content %}
 <div class="detail__img">
-    <img src="{{dog.img}}" alt="{{dog.name}}" />
+    <img class = "image dog_profile-img" src="{{dog.img}}" alt="{{dog.name}}" />
 </div>
 <div class="detail__name">
     {% if dog.is_dog %}
@@ -27,10 +27,74 @@
             </span>
         </a>
     </div>
+
+    <form class="mb-5" action="{% url 'work_create' dog.pk %}" method="post">
+        {% csrf_token %}
+        <div class="field has-addons">
+            <div class="control">
+                <input
+                    class="input"
+                    type="text"
+                    name="title"
+                    placeholder="Title"
+                    required
+                />
+            </div>
+            <div class="control">
+                <input
+                    class="input"
+                    type="text"
+                    name="img"
+                    placeholder="Image URL"
+                    required
+                />
+            </div>
+            <div class="control">
+                <input
+                    class="input"
+                    type="textarea"
+                    name="description"
+                    placeholder="Description"
+                    required
+                />
+            </div>
+            <div class="control">
+                <input class="button is-primary" type="submit" value="Add Work" />
+            </div>
+        </div>
+    </form>
+
+    <div class="detail__works mb-5">
+        <h3 class="title is-3">Works</h3>
+
+        {% for work in dog.works.all %}
+            <div class="work">
+                <div class="workDetails">
+                    <span>{{forloop.counter}}</span>
+                    <span><b>Title: </b>{{work.title}}</span>
+                    <span><b>Description: </b>{{work.description}}</span>
+                    <span><b>Date Submitted: </b>{{work.date_created}}</span>
+                </div>
+                <div><img class="work_img" src = {{work.img}} /></div>
+
+            </div>
+        {% empty %}
+            <article class="message">
+                <div class="message-header">
+                    <p>No works Available</p>
+                </div>
+            </article>
+
+        {% endfor %}
+    </div>
+
     <div class="detail__about">
         <h4 class="title is-4">About</h4>
         <p>{{dog.info}}</p>
     </div>
+
+   
+
 </div>
 
 {% endblock %}

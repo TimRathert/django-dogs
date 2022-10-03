@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date
 
 class Dog(models.Model):
     name = models.CharField(max_length=100)
@@ -12,10 +13,12 @@ class Dog(models.Model):
 
     class Meta:
         ordering = ['name']
+        
 class Work(models.Model):
     title = models.CharField(max_length=150)
+    img = models.CharField(max_length=250)
     description = models.TextField(max_length=400)
-    date_created = models.DateTimeField(auto_now_add=True)
+    date_created = models.DateField(("Date"), default=date.today)
     artist = models.ForeignKey(Dog, on_delete=models.CASCADE, related_name="works")
 
     def __str__(self):
