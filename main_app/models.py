@@ -12,3 +12,11 @@ class Dog(models.Model):
 
     class Meta:
         ordering = ['name']
+class Work(models.Model):
+    title = models.CharField(max_length=150)
+    description = models.TextField(max_length=400)
+    date_created = models.DateTimeField(auto_now_add=True)
+    artist = models.ForeignKey(Dog, on_delete=models.CASCADE, related_name="works")
+
+    def __str__(self):
+        return self.title
