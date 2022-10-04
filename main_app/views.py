@@ -5,10 +5,14 @@ from django.views.generic.base import TemplateView
 from django.http import HttpResponse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
-from .models import Dog, Work
+from .models import Dog, Work, Gallery
 
 class Home(TemplateView):
     template_name = 'home.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["gallerys"] = Gallery.objects.all()
+        return context
 class About(TemplateView):
     template_name = 'about.html'
     
@@ -24,7 +28,8 @@ class DogList(TemplateView):
         else:
                 context["dogs"] = Dog.objects.all()
                 context["header"] = "Dogs"
-        return context    
+        return context
+
 class DogCreate(CreateView):
     model = Dog
     fields = ['name', 'img', 'info', 'is_dog' ]
@@ -36,6 +41,11 @@ class DogCreate(CreateView):
 class DogDetail(DetailView):
     model = Dog
     template_name = 'dog_detail.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['gallerys'] = Gallery.objects.all()
+        return context
+        
 
 class DogUpdate(UpdateView):
     model = Dog
@@ -43,7 +53,7 @@ class DogUpdate(UpdateView):
     template_name = 'dog_update.html'
     def get_success_url(self):
         return reverse('dog_detail', kwargs={'pk': self.object.pk})
-    #success_url = "/dogs/<int:dog.pk>/"
+
 class DogDelete(DeleteView):
     model = Dog
     template_name = 'dog_delete_confirmation.html'
@@ -57,3 +67,12 @@ class WorkCreate(CreateView):
         artist = Dog.objects.get(pk=pk)
         Work.objects.create(title=title, img=img, description=description, artist=artist)
         return redirect('dog_detail', pk=pk)
+
+class GalleryWorkAssoc(View):
+    def get(self, request, pk, work_pk):
+        assoc = request.GET.get('assoc')
+        if assoc == 'remove':
+            Gallery.objects.get(pk=pk).works.remove(work_pk)
+        if assoc == 'add':
+            Gallery.objects.get(pk=pk).works.add(work_pk)
+        return redirect('home')

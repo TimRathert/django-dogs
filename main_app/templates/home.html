@@ -1,7 +1,38 @@
-{% extends "base.html" %}
+{% extends 'base.html' %} 
 {% block title %}
-    Home page 
+    Dogs of Brutalism: Galleries Hosted 
 {% endblock %}
 {% block content %}
-    <h1>Dogs Home Page</h1>
+<div class="home__gallerys">
+    {% for gallery in gallerys %}
+
+        <div class="gallery-details mb-5">
+            <h3 class="title is-3 has-text-grey-lighter">{{gallery.name}}</h3>
+            <p class="block has-text-grey">{{gallery.city}}, {{gallery.country}}</p>
+            <div class="gallery-all-items is-flex">
+            {% for work in gallery.works.all %}
+
+                <div class="gallery-item block m-3 is-justify-content-center is-link">
+                    <a href="{% url 'dog_detail' work.artist.pk %}"><img class="work_img image is-128x128" src = {{work.img}} /></a>
+                    <div class="workDetails is-100-width">
+                        {{forloop.counter}}
+                        <b>Title: </b>
+                        <div>{{work.title}}</div>
+                        <b>Artist: </b>
+                        <a href="{% url 'dog_detail' work.artist.pk %}" class="has-text-success-light"><div>{{work.artist}}</div></a>
+                    </div>
+                    <a href="{% url 'gallery_work_assoc' gallery.pk work.pk %}?assoc=remove" class="button is-pulled-right is-danger is-outlined">
+                        <span class="icon is-small">
+                            <i class="fas fa-times"></i>
+                        </span>
+                    </a>
+                </div>
+                    {% endfor %}
+
+            </div>
+        </div>
+    {% empty %} 
+        <div class="gallery-details mb-5">"No galleries listed yet"</div>
+    {% endfor %}
+</div>
 {% endblock %}

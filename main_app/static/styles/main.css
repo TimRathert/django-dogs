@@ -1,6 +1,9 @@
 .is-fullheight-100vh{
   min-height: 100vh;
 }
+.is-100-width{
+  width: 100%;
+}
 body {
   background-color: #121212;
   color: #ffffff;
@@ -96,7 +99,7 @@ img {
     display: flex;
     flex-direction: row;
     border-radius: 5px;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 .workDetails{
   display: flex;
@@ -116,3 +119,35 @@ img {
 body > footer{
   margin-top: auto;
 }
+
+.fix-footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  overflow:hidden;
+}
+
+.gallery-all-items{
+  overflow-x: scroll;
+  overflow-wrap: hidden;
+  white-space: nowrap;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #121212; 
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: #2f2f2f; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+.gallery-item{
+  max-width: 128px;
+}
+

@@ -1,0 +1,37 @@
+{% extends 'base.html' %} 
+{% block title %}
+    Dogs of Brutalism: Galleries Hosted 
+{% endblock %}
+{% block content %}
+<div class="home__gallerys">
+    {% for gallery in gallerys %}
+
+        <div class="gallery-details mb-5">
+            <h3 class="title is-3 has-text-success">{{gallery.name}}</h3>
+            <p class="block">{{gallery.city}}, {{gallery.country}}</p>
+            {% comment %} <hr /> {% endcomment %}
+            <div class="gallery-all-items is-flex">
+            {% for work in gallery.works.all %}
+
+                <div class="gallery-item block m-3 is-justify-content-center ">
+                    <img class="work_img image is-128x128" src = {{work.img}} />
+                    <div class="workDetails">
+                        <span>{{forloop.counter}}</span>
+                        <b>Title: </b>
+                        <div>{{work.title}}</div>
+                        <b>Artist: </b>
+                        <div>{{work.artist}}</div>
+                        {% comment %} <span><b>Description: </b>{{work.description}}</span> {% endcomment %}
+                        {% comment %} <span><b>Date Submitted: </b>{{work.date_created}}</span> {% endcomment %}
+                    </div>
+
+            </div>
+
+            {% endfor %}
+            </div>
+        </div>
+    {% empty %} 
+        <div class="playlist mb-5">"There are no works that have visited this gallery"</div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -23,3 +23,12 @@ class Work(models.Model):
 
     def __str__(self):
         return self.title
+
+class Gallery(models.Model):
+    name = models.CharField(max_length=150)
+    city = models.CharField(max_length=150)
+    country = models.CharField(max_length=100)
+    works = models.ManyToManyField(Work)
+
+    def __str__(self):
+        return self.name
