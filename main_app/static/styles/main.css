@@ -8,6 +8,10 @@ body {
   background-color: #121212;
   color: #ffffff;
 }
+/* playing with nav bar / scrollbar interaction 
+body::-webkit-scrollbar-track {
+    background: #0a0a0a; 
+} */
 .page-content{
   width: 90%;
   margin: 0 auto;
@@ -133,7 +137,7 @@ body > footer{
   white-space: nowrap;
 }
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -151,3 +155,7 @@ body > footer{
   max-width: 128px;
 }
 
+.nothingHereGif{
+  width: 50%;
+  margin: 0 auto;
+}
