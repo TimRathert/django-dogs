@@ -114,3 +114,26 @@ class Signup(View):
         else:
             context = {"form": form}
             return render(request, "registration/signup.html", context)
+class GalleryCreate(CreateView):
+    model = Gallery
+    fields = ['name', 'city', 'country' ]
+    template_name = 'gallery_create.html'
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(GalleryCreate, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse('home')
+
+class GalleryUpdate(UpdateView):
+    model = Gallery
+    fields = ['name', 'city', 'country']
+    template_name = 'gallery_update.html'
+    success_url = "/"
+    # def get_success_url(self):
+    #     return reverse('home', kwargs={'pk': self.object.pk})
+
+class GalleryDelete(DeleteView):
+    model = Gallery
+    template_name = 'gallery_delete_confirmation.html'
+    success_url = "/"

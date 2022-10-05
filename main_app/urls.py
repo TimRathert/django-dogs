@@ -12,5 +12,8 @@ urlpatterns = [
     path('dogs/<int:pk>/delete', views.DogDelete.as_view(), name="dog_delete"),
     path('dogs/<int:pk>/works/new', views.WorkCreate.as_view(), name="work_create"),
     path('galleries/<int:pk>/works/<int:work_pk>/', views.GalleryWorkAssoc.as_view(), name = "gallery_work_assoc"),
-    path('accounts/signup/', views.Signup.as_view(), name="signup")
+    path('accounts/signup/', views.Signup.as_view(), name="signup"),
+    path('galleries/new', views.GalleryCreate.as_view(), name = "gallery_create"),
+    path('galleries/<int:pk>/update', views.GalleryUpdate.as_view(), name="gallery_update"),
+    path('galleries/<int:pk>/delete', views.GalleryDelete.as_view(), name="gallery_delete"),
 ]   

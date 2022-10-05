@@ -7,7 +7,19 @@
     {% for gallery in gallerys %}
 
         <div class="gallery-details mb-5">
-            <h3 class="title is-3 has-text-grey-lighter">{{gallery.name}}</h3>
+            <span class='is-flex'>
+                <h3 class="title is-3 has-text-grey-lighter ">{{gallery.name}}</h3>
+                <a href="/galleries/{{gallery.id}}/delete" class="button is-danger is-small is-align-self-center mx-2">
+                    <span class="icon is-small">
+                        <i class="fas fa-trash"></i>
+                    </span>
+                </a>
+                <a href="/galleries/{{gallery.id}}/update" class="button is-primary is-small is-align-self-center mx-2">
+                    <span class="icon is-small">
+                        <i class="fas fa-pen"></i>
+                    </span>
+                </a>
+            </span>
             <p class="block has-text-grey">{{gallery.city}}, {{gallery.country}}</p>
             <div class="gallery-all-items is-flex">
             {% for work in gallery.works.all %}

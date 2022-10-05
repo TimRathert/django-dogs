@@ -37,6 +37,7 @@
                 <div class="navbar-menu navbar-end">
                     <a class="navbar-item" href="/dogs">All Dogs</a>
                     <a class="navbar-item" href="/about">About</a>
+                    <a class="navbar-item" href="{% url 'gallery_create' %}">New Gallery</a>
                     <a class="navbar-item" href="{% url 'logout' %}">Logout</a>
                 </div>
             {% else %}
