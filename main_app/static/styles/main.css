@@ -159,3 +159,42 @@ body > footer{
   width: 50%;
   margin: 0 auto;
 }
+.slideshow1{
+  transition: height 1s, opacity 1s;
+  height: 0px;
+}
+.infotext1{
+  border-radius: 20px;
+  transition: inherit, background-color 1s;
+}
+.infotext1:hover{
+  background-color: hsla(0, 0%, 100%, 0.144);
+}
+.infotext-def1{
+  transition: inherit;
+  margin: 20px;
+}
+
+
+.slideshow2{
+  transition: height 1s, opacity 1s;
+  height: 0px;
+}
+.infotext2{
+  border-radius: 20px;
+  transition: inherit, background-color 1s;
+}
+.infotext2:hover{
+  background-color: hsla(0, 0%, 100%, 0.144);
+}
+.infotext-def2{
+  transition: inherit;
+  margin: 20px;
+}
+
+
+.infotext-wrapper{
+  background-color: hsla(0, 0%, 100%, 0.02);
+  border-radius: 20px;
+  margin: 10px;
+}

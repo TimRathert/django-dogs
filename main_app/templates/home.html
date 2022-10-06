@@ -4,47 +4,28 @@
 {% endblock %}
 {% block content %}
 <div class="home__gallerys">
-    {% for gallery in gallerys %}
+    <h1 class="title is-1 has-text-centered">Dogs of Brutalism</h1>
 
-        <div class="gallery-details mb-5">
-            <span class='is-flex'>
-                <h3 class="title is-3 has-text-grey-lighter ">{{gallery.name}}</h3>
-                <a href="/galleries/{{gallery.id}}/delete" class="button is-danger is-small is-align-self-center mx-2">
-                    <span class="icon is-small">
-                        <i class="fas fa-trash"></i>
-                    </span>
-                </a>
-                <a href="/galleries/{{gallery.id}}/update" class="button is-primary is-small is-align-self-center mx-2">
-                    <span class="icon is-small">
-                        <i class="fas fa-pen"></i>
-                    </span>
-                </a>
-            </span>
-            <p class="block has-text-grey">{{gallery.city}}, {{gallery.country}}</p>
-            <div class="gallery-all-items is-flex">
-            {% for work in gallery.works.all %}
-
-                <div class="gallery-item block m-3 is-justify-content-center is-link">
-                    <a href="{% url 'dog_detail' work.artist.pk %}"><img class="work_img image is-128x128" src = {{work.img}} /></a>
-                    <div class="workDetails is-100-width">
-                        {{forloop.counter}}
-                        <b>Title: </b>
-                        <div>{{work.title}}</div>
-                        <b>Artist: </b>
-                        <a href="{% url 'dog_detail' work.artist.pk %}" class="has-text-success-light"><div>{{work.artist}}</div></a>
-                    </div>
-                    <a href="{% url 'gallery_work_assoc' gallery.pk work.pk %}?assoc=remove" class="button is-pulled-right is-danger is-outlined">
-                        <span class="icon is-small">
-                            <i class="fas fa-times"></i>
-                        </span>
-                    </a>
-                </div>
-                    {% endfor %}
-
-            </div>
+    <div class="infotext-wrapper">
+        <p class="is-size-3 infotext1 has-text-centered boxed-radius">What is Dogs of Brutalism?</p>
+        <div class="is-clipped slideshow1">
+            <p class="infotext-def1 has-text-centered">
+                This is a space dedicated to some of the most prolific dogs of the Brutalist movement and the works that they have created.
+            </p>    
         </div>
-    {% empty %} 
-        <div class="gallery-details mb-5">"No galleries listed yet"</div>
-    {% endfor %}
+    </div>
+
+    <div class="infotext-wrapper">
+        <p class="is-size-3 infotext2 has-text-centered boxed-radius">What is Brutalism?</p>
+        <div class="is-clipped slideshow2">
+            <p class="infotext-def2 has-text-centered">
+                Brutalist architecture is an architectural style that emerged during the 1950s in the United Kingdom, among the reconstruction projects of the post-war era. Brutalist buildings are characterised by minimalist constructions that showcase the bare building materials and structural elements over decorative design. The style commonly makes use of exposed, unpainted concrete or brick, angular geometric shapes and a predominantly monochrome colour palette; other materials, such as steel, timber, and glass, are also featured.
+            </p>
+            <div class="has-text-right"><a href="https://en.wikipedia.org/wiki/Brutalist_architecture">Taken From Wikipedia</a></div>
+            <img class="slidwshow-img" src="https://anotherimg-dazedgroup.netdna-ssl.com/701/azure/another-prod/380/1/381026.jpg"/>
+        </div>
+    </div>
+
+    
 </div>
 {% endblock %}

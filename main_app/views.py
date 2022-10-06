@@ -15,6 +15,7 @@ class Home(TemplateView):
         context = super().get_context_data(**kwargs)
         context["gallerys"] = Gallery.objects.all()
         return context
+
 class About(TemplateView):
     template_name = 'about.html'
     
@@ -137,3 +138,10 @@ class GalleryDelete(DeleteView):
     model = Gallery
     template_name = 'gallery_delete_confirmation.html'
     success_url = "/"
+
+class Galleries(TemplateView):
+    template_name = 'galleries_home.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["gallerys"] = Gallery.objects.all()
+        return context
